@@ -151,6 +151,11 @@ public class Application {
         JButton btnLggTillKonto = new JButton("Lägg till konto");
         btnLggTillKonto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	String pNbr = textPNbr.getText();
+            	String number = textKontoNr.getText();
+            	double balance = Double.parseDouble(textSaldo.getText());
+            	controller.addAccount(number, balance, pNbr);
+            	lblResponse.setText("Händelse: Konton lades till personen.");
             }
         });
         btnLggTillKonto.setBounds(455, 332, 193, 29);
@@ -175,6 +180,16 @@ public class Application {
         textSaldo.setColumns(10);
         
         JButton btnRaderaKonto = new JButton("Radera konto");
+        btnRaderaKonto.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String pNbr = textPNbr.getText();
+        		String accountNbr = textKontoNr.getText();
+        		controller.removeAccount(pNbr, accountNbr);
+        		lblResponse.setText("Händelse: Konton raderades.");
+        		textKontoNr.setText("");
+                textSaldo.setText("");
+        	}
+        });
         btnRaderaKonto.setBounds(455, 387, 193, 29);
         frame.getContentPane().add(btnRaderaKonto);
     }

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 public class Controller {
 
@@ -33,6 +35,29 @@ public class Controller {
 	}
 	
 	//Metoder för klassen Person och klassen Account (lägg till konto)
+	
+	//Lägg till konto hos en befintlig person
+	public void addAccount(String accountNumber, double saldo, String pNbr) {
+		
+		//Skapar en person som hittas med sökfunktionen. Skapar även ett konto.
+		person = personregister.findPerson(pNbr);
+		account = new Account();
+		
+		//Sätter kontons saldo, nummer, ägare. Konton läggs till i kundens lista av konton
+		account.setBalance(saldo);
+		account.setNbr(accountNumber);
+		account.setOwner(person);
+		person.addAccount(account);
+	}
+	
+	//Radera konto hos person utifrån ett givet personnummer och kontonummer
+	public void removeAccount(String pNbr, String accountNbr) {
+		
+		//Sätter värdet på "person" till att vara den hittade personen. Därefter raderas konton.
+		person = personregister.findPerson(pNbr);
+		person.removeAccount(accountNbr);
+		
+	}
 
 
 

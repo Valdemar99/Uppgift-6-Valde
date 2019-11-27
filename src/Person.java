@@ -31,6 +31,29 @@ public class Person {
 	public void addAccount(Account aBankAccount) {
 		accounts.add(aBankAccount);
 	}
+	
+	//Sökfunktion - hitta konto med givet kontonummer
+	public Account findAccount(String nbr) {        
+        for(Account tmp : this.getAccounts()) {            
+            if(nbr.equals(tmp.getNbr())) {
+                return tmp;
+                }
+            }
+        return null;
+    
+    }
+	
+	//Ta bort konto hos person
+	public Account removeAccount(String nbr) {
+		Account a = this.findAccount(nbr);
+		accounts.remove(a);
+		return a; 
+	}
+
+
+
+
+	
 	public Person(String pNbr, String name) {
 		this.setPnbr(pNbr);
 		this.setName(name);
